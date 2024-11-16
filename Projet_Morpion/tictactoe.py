@@ -32,6 +32,8 @@ def PlayerInput(BOARD, currentPlayer):
             if number >= 1 and number <= 9 and BOARD[number - 1] == "-":
                 BOARD[number - 1] = currentPlayer  # Marque la case avec la marque du joueur
                 return False
+            elif number < 1 or number > 9 :
+                print("Please choose a number between 1 and 9.")
             else:
                 print("Choose another spot, a player is already in that spot!")  # Si la case est déjà occupée
         except ValueError:
@@ -164,10 +166,10 @@ Elle demande à l'utilisateur de choisir entre ces deux modes et valide l'entré
 """
 def select_mode():
     while True:
-        mode = input("Single-player or multi-player? ").strip().lower()
-        if mode in ["singleplayer", "single-player", "single"]:
+        mode = input("Single-player or multi-player?(single/multi) ").strip().lower()
+        if mode in ["singleplayer", "single-player", "single","s"]:
             return mode
-        elif mode in ["multiplayer", "multi-player", "multi"]:
+        elif mode in ["multiplayer", "multi-player", "multi","m"]:
             return mode
         else:
             print("Please enter only singleplayer or multiplayer!")
@@ -242,10 +244,10 @@ def gameMode():
                  "-", "-", "-"]
         currentPlayer = PLAYER1
         gameRunning = True
-        if mode in ["singleplayer", "single", "single-player"]:
+        if mode in ["singleplayer", "single", "single-player","s"]:
             print("You are playing as singleplayer.")
             singleplayer(BOARD, currentPlayer, gameRunning)  # Lancer le mode solo
-        elif mode in ["multiplayer", "multi", "multi-player"]:
+        elif mode in ["multiplayer", "multi", "multi-player","m"]:
             print("You are playing as multiplayer.")
             multiplayer(BOARD, currentPlayer, gameRunning)  # Lancer le mode multijoueur
         if not ask_to_play_again():  # Demander si l'utilisateur veut rejouer
